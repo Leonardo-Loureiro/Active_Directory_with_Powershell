@@ -1,4 +1,4 @@
-﻿#Active Directory öffnen - Leonardo
+﻿#Active Directory öffnen - 
 #dsa.msc
 $ADoef_schli = dsa.msc
 
@@ -14,7 +14,7 @@ write-host "4 : Programm beenden`n"
 #Eingabe für welche Aktion!
 $eingabe = read-host "Drücken Sie eine Zahl zwischen 1-4 für eine Aktion"
 
-#Switch - Leonardo
+#Switch - 
 switch($eingabe) {
 
 1{"`n Neuen Benutzer oder Gruppe erstellen`n"
@@ -22,15 +22,15 @@ write-host "1 = Benutzer / 2 = Gruppe`n"
 $Benu_Grup = read-host "Benutzer oder Gruppe?"
 
 if($Benu_Grup -eq 1){
-    #AD Module Importieren - Leonardo
+    #AD Module Importieren - 
     Import-Module ActiveDirectory
 
-    # Variablen vom Benutzer empfangen - Leonardo
+    # Variablen vom Benutzer empfangen - 
     $Vorname = Read-Host -Prompt "`nGeben Sie Ihren Vornamen ein "
     $Nachname = Read-Host -Prompt "Geben Sie Ihren Nachnamen ein "
     $Passwort = Read-Host -Prompt "Ihr Passwort "
 
-    # Neuen User erstellen - Leonardo    
+    # Neuen User erstellen -     
     New-ADUser `
      -Name "$Vorname $Nachname" `
      -GivenName $Vorname `
@@ -42,7 +42,7 @@ if($Benu_Grup -eq 1){
 
     write-host "User erstellt..."
 
-    #Loop festlegen - Leonardo
+    #Loop festlegen - 
     $Fragen = read-host "`nMöchten Sie mit dem Programm fortsetzen? 1 für JA / 2 für NEIN"
 if($Fragen -eq 1){
     $Fortsetzung = 1
@@ -53,14 +53,14 @@ if($Fragen -eq 2){
 }
 
 if($Benu_Grup -eq 2){
-    #AD Module Importieren - Leonardo
+    #AD Module Importieren - 
     Import-Module ActiveDirectory
 
-    # Variablen vom Benutzer empfangen - Leonardo
+    # Variablen vom Benutzer empfangen - 
     $Name_Grup = Read-Host -Prompt "Geben Sie den Namen der Gruppe ein "
     $Scope = Read-Host -Prompt "Geben Sie den Typ der Gruppe ein (Global, Universal usw.) "
 
-    # Neue Gruppe erstellen - Leonardo
+    # Neue Gruppe erstellen - 
     NEW-ADGroup `
         -Name $Name_Grup `
         -GroupScope $Scope `
@@ -68,7 +68,7 @@ if($Benu_Grup -eq 2){
 
     write-host "Gruppe erstellt..."
 
-    #Loop festlegen - Leonardo
+    #Loop festlegen - 
     $Fragen = read-host "`nMöchten Sie mit dem Programm fortsetzen? 1 für JA / 2 für NEIN"
 if($Fragen -eq 1){
     $Fortsetzung = 1
@@ -85,13 +85,13 @@ if($Fragen -eq 2){
 $Pass_Abl = read-host "1 = Passwort ändern / 2 = Ablaufdatum ändern"
 
 if($Pass_Abl -eq 1){
-    #AD Module Importieren - Leonardo
+    #AD Module Importieren - 
     Import-Module ActiveDirectory
 
-    #Aufzeigen aller User - Leonardo | mit * alle aufzeigen
+    #Aufzeigen aller User -  | mit * alle aufzeigen
     Get-ADUser 
 
-    # Variablen vom Benutzer empfangen - Leonardo
+    # Variablen vom Benutzer empfangen - 
     $Name_User = Read-Host -Prompt "`nGeben Sie den Namen des Users ein "
     #$oldPassword = Read-Host -Prompt "Geben Sie Ihren alten Passwort ein"
     $newPassword = Read-Host -Prompt "Bitte geben Sie Ihren neuen Passwort ein"
@@ -112,16 +112,16 @@ if($Fragen -eq 2){
 }
 
 if($Pass_Abl -eq 2){
-    #Import AD Module- Shaadhanaa
+    #Import AD Module- 
     Import-Module ACtiveDirectory
 
-    #Alle Users anzeigen - Shaadhanaa
+    #Alle Users anzeigen - 
     Get-ADUser
 
     $Auswahl_User = Read-Host "Ihre Auswahl? (Name)"
     $Ablaufdatum_user = Read-Host "Datum? (dd/mm/yyyy)"
 
-    #Ablaufdatum festlegen - Shaadhanaa
+    #Ablaufdatum festlegen - 
     set-ADAccountExpiration `
         -Identity $Auswahl_User `
         -DateTime $Ablaufdatum_user `
@@ -129,7 +129,7 @@ if($Pass_Abl -eq 2){
     write-host "Ablaufdatum festgelegt!"
 
 
-    #Loop festlegen - Leonardo
+    #Loop festlegen - 
     $Fragen = read-host "`nMöchten Sie mit dem Programm fortsetzen? 1 für JA / 2 für NEIN"
 if($Fragen -eq 1){
     $Fortsetzung = 1
@@ -146,7 +146,7 @@ write-host "-------------------------"
 $User_Grup_loesch = read-host "1 = User / 2 = Gruppen"
 
 if($User_Grup_loesch -eq 1){
-    #Import AD Module - Shaadhanaa
+    #Import AD Module - 
     Import-Module ActiveDirectory
 
     #Alle Users auflisten | mit * alle aufzeigen - Shaadhanaa
@@ -157,7 +157,7 @@ if($User_Grup_loesch -eq 1){
     Remove-ADUser `
     -Identity "$Auswahl_user" `
 
-    #Loop festlegen - Leonardo
+    #Loop festlegen - 
     $Fragen = read-host "`nMöchten Sie mit dem Programm fortsetzen? 1 für JA / 2 für NEIN"
 if($Fragen -eq 1){
     $Fortsetzung = 1
@@ -168,19 +168,19 @@ if($Fragen -eq 2){
 }
 
 if($User_Grup_loesch -eq 2){
-    #Import AD Module - Shaadhanaa
+    #Import AD Module - 
     Import-Module ActiveDirectory
 
-    #Alle Users auflisten - Shaadhanaa 
+    #Alle Users auflisten -
     Get-ADGroup
 
     $Auswahl_user2 = read-host "Ihre Auswahl? (Name)"
 
-    #Gruppe entfernen - Shaadhanaa
+    #Gruppe entfernen - 
     Remove-ADGroup `
     -Identity "$Auswahl_user2" `
 
-    #Loop festlegen - Leonardo
+    #Loop festlegen - 
     $Fragen = read-host "`nMöchten Sie mit dem Programm fortsetzen? 1 für JA / 2 für NEIN"
 if($Fragen -eq 1){
     $Fortsetzung = 1
@@ -193,14 +193,14 @@ if($Fragen -eq 2){
 
 4{"`nVielen Dank und auf wiedersehen!"
 
-    #Import AD Module - Shaadhanaa
+    #Import AD Module - 
     Import-Module ActiveDirectory
 
     #AD Fenster schliessen
     Stop-Process `
     -ProcessName mmc `
 
-    #Programm beenden - Leonardo
+    #Programm beenden -
     $Fortsetzung = 0
 }
 
